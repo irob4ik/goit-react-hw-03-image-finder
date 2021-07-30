@@ -5,12 +5,12 @@ import Button from '../Button/Button';
 
 import styles from './imageGallery.module.css';
 
-const ImageGallery = ({ gallery, loadMore }) => (
+const ImageGallery = ({ gallery, loadMore, showModal }) => (
     <>
         <ul className={styles.ImageGallery}>
-            <ImageGalleryItem hits={gallery}/>
+            <ImageGalleryItem hits={gallery} onClick={showModal}/>
         </ul>
-        <Button onClick={loadMore}/>
+        <Button onClick={loadMore} btnName="Load more"/>
     </>
 );
 

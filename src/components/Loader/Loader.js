@@ -8,10 +8,10 @@ const Loader = () => (
     <div className={styles.Spinner}>
         <Spinner
             type="Puff"
-            color="#3f51b5"
-            height={200}
-            width={200}
-            timeout={3000}
+            color="#3f51b599"
+            height={300}
+            width={300}
+            timeout={3000}            
         />
     </div>
 );

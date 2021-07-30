@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import styles from './imageGalleryItem.module.css';
 
-const ImageGalleryItem = ({ hits }) => {
-    return (
-        hits.map(({id, tags, webformatURL}) => (
-            <li className={styles.ImageGalleryItem} key={id}>
-                <img src={webformatURL} alt={tags} className={styles.ImageGalleryItem_image} />
-            </li>    
-        ))
+class ImageGalleryItem extends Component {
+    state = {    }
 
-        
-    );
+    render() {
+        return (
+            this.props.hits.map(({ id, tags, webformatURL, largeImageURL }) => (
+                <li className={styles.ImageGalleryItem} key={id} >
+                    <img
+                        onClick={this.props.onClick}
+                        src={webformatURL}
+                        lowsrc={largeImageURL}
+                        alt={tags}
+                        className={styles.ImageGalleryItem_image} />
+                </li>
+            ))
+        )
+    }
 }
 
 export default ImageGalleryItem;
