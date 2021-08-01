@@ -42,7 +42,13 @@ class App extends Component {
             })
           }
           if (nextPage === 1) {
-            this.setState({ gallery: data.hits });  
+            console.log(data.hits);
+            if (data.hits.length === 0) {
+              this.setState({ gallery: data.hits, loaderStatus: 'nothingFound' });
+              return;
+            }
+            this.setState({ gallery: data.hits, loaderStatus: 'init'});
+            
           }          
         })
         .catch(error => this.setState({error}))
@@ -78,7 +84,7 @@ class App extends Component {
   }
 
   render() {
-    const { gallery, loading, loaderStatus, showModal } = this.state;
+    const { gallery, loading, loaderStatus, showModal, search } = this.state;
 
     return (
       <div className={styles.App}>
@@ -91,6 +97,9 @@ class App extends Component {
           gallery = {gallery}
           loadMore = {this.handleLoadMore}
           showModal={this.toggleModal} />}
+        
+        {loaderStatus === 'nothingFound' && search !== null &&
+          <h1>Nothing found.... Try again</h1>}
         
         {showModal && <Modal onClose={this.toggleModal}>
           <img src={this.state.largeImg} alt="" />
